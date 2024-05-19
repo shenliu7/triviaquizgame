@@ -85,13 +85,12 @@ function showQuestion() {
 
         const answersDiv = document.getElementById('answers');
         answersDiv.innerHTML = ''; // clear previous answers
-        console.log(currentQuestionIndex)
 
         questionObj.answers.forEach((answer, index) => {
             const button = document.createElement('button'); // create answers in buttons
             button.innerText = answer;
 
-            button.onClick = () => checkAnswer(index); // add click event to check answers
+            button.onclick = () => checkAnswer(index); // add click event to check answers
             answersDiv.appendChild(button);
 
         });
@@ -104,6 +103,9 @@ function showQuestion() {
 function checkAnswer(selectedIndex) {
 
     // check for correct answer and add 1 point if answer is correct
+    console.log(selectedIndex)
+    console.log(currentCategory[currentQuestionIndex].correct)
+
     if (selectedIndex === currentCategory[currentQuestionIndex].correct) {
         score++;
     }
