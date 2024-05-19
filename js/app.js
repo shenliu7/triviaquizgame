@@ -1,6 +1,7 @@
 /*-------------- Constants -------------*/
 
 const movieQuestions = [
+
     {question: "Who directed the movie 'Inception'?", answers: ["Christopher Nolan", "Steven Spielberg", "James Cameron", "Quentin Tarantino"], correct: 0},
 
     { question: "Which movie won the Oscar for Best Picture in 2020?", answers: ["1917", "Joker", "Parasite", "Ford v Ferrari"], correct: 2 },
@@ -19,11 +20,12 @@ const movieQuestions = [
 
     {question: "In which movie does the character Tyler Durden appear?", answers: ["Fight Club", "The Matrix", "Pulp Fiction", "Se7en"], correct: 0},
 
-    {question: "What is the name of the hotel in 'The Shining'?", answers: ["The Overlook Hotel", "The Grand Budapest Hotel", "The Bates Motel", "The Continental"], correct: 0},
+    {question: "What is the name of the hotel in 'The Shining'?", answers: ["The Overlook Hotel", "The Grand Budapest Hotel", "The Bates Motel", "The Continental"], correct: 0}
 
 ];
 
 const videoGameQuestions = [
+
     { question: "In which year was the first 'Super Mario Bros.' game released?", answers: ["1983", "1985", "1987", "1989"], correct: 1 },
 
     {question: "Which game features a protagonist named 'J.C. Denton'?", answers: ["Half-Life", "Deus Ex", "Bioshock", "System Shock 2"], correct: 1},
@@ -43,6 +45,7 @@ const videoGameQuestions = [
     {question: "What is the name of the protagonist in 'Red Dead Redemption'?", answers: ["Arthur Morgan", "John Marston", "Jack Marston", "Dutch van der Linde"], correct: 1},
 
     {question: "In 'Silent Hill 2', what is the name of the main character searching for his wife?", answers: ["Harry Mason", "James Sunderland", "Heather Mason", "Travis Grady"], correct: 1}
+
 ];
 
 /*---------- Variables (state) ---------*/
