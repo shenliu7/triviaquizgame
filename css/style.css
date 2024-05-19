@@ -1,0 +1,11 @@
+body {
+    font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.screen {
+    padding: 20px;
+}
+
