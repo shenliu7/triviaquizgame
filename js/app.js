@@ -48,11 +48,60 @@ const videoGameQuestions = [
 
 ];
 
+const animeQuestions = [
+
+    {question: "What is the name of the main character in the anime 'Baccano!'?", answers: ["Isaac Dian", "Claire Stanfield", "Firo Prochainezo", "Vino"], correct: 2, image: "images/BGBO.gif"},
+
+    {question: "In 'Neon Genesis Evangelion', what is the true form of the being known as Lilith?", answers: ["An Angel", "A Human", "An Alien", "A God"], correct: 1, image: "images/eva.gif"},
+
+    {question: "What is the original Japanese title of the anime 'Attack on Titan'?", answers: ["Shingeki no Kyojin", "Tatakau Kyojin", "Kyojin no Tsubasa", "Kyojin to Senshi"], correct: 0, image: "images/aot.gif"},
+
+    {question: "In 'Fullmetal Alchemist', what is the name of the alchemical process used to create a Philosopher's Stone?", answers: ["Human Transmutation", "Soul Binding", "Alchemy of the Soul", "Truth Alchemy"], correct: 0, image: "images/fullmetal.gif"},
+
+    {question: "Who is the main antagonist in the anime 'Death Note'?", answers: ["Light Yagami", "Ryuk", "L", "Misa Amane"], correct: 0, image: "images/deathnote.gif"},
+
+    {question: "In 'One Piece', what is the name of the island where Luffy finds the One Piece?", answers: ["Raftel", "Marineford", "Skypiea", "Sabaody Archipelago"], correct: 0, image: "images/op.gif"},
+
+    {question: "What is the highest-ranked magic guild in the anime 'Fairy Tail'?", answers: ["Fairy Tail", "Blue Pegasus", "Phantom Lord", "Sabertooth"], correct: 3, image: "images/ft.gif"},
+
+    {question: "In 'Naruto', what is the name of the jutsu used by Kakashi to copy other ninjas' techniques?", answers: ["Sharingan", "Rinnegan", "Byakugan", "Mangekyo"], correct: 0, image: "images/naruto.gif"},
+
+    {question: "In 'My Hero Academia', what is the name of the hero academy where the main characters study?", answers: ["UA High School", "Shiketsu High School", "Ketsubutsu Academy", "Isami Academy"], correct: 0, image: "images/mha.gif"},
+
+    {question: "In 'Code Geass', what is the real name of the character known as Zero?", answers: ["Suzaku Kururugi", "Rolo Lamperouge", "Lelouch Vi Britannia", "Charles Zi Britannia"], correct: 2, image: "images/code.gif"}
+
+];
+
+const musicQuestions = [
+
+    {question: "Which composer wrote the opera 'The Marriage of Figaro'?", answers: ["Ludwig van Beethoven", "Johann Sebastian Bach", "Wolfgang Amadeus Mozart", "Franz Schubert"], correct: 2, image: "images/moz.jpg"},
+
+    {question: "Who was the original lead guitarist for the band Metallica?", answers: ["Kirk Hammett", "James Hetfield", "Dave Mustaine", "Ron McGovney"], correct: 2, image: "images/metallica.gif"},
+
+    {question: "Which album is often regarded as the first concept album in rock music history?", answers: ["Sgt. Pepper's Lonely Hearts Club Band", "Pet Sounds", "In the Court of the Crimson King", "Tommy"], correct: 1, image: "images/rock.jpg"},
+
+    {question: "Who is known as the 'Queen of Soul'?", answers: ["Tina Turner", "Aretha Franklin", "Diana Ross", "Whitney Houston"], correct: 1, image: "images/soul.jpg"},
+
+    {question: "Which jazz musician is famous for playing the trumpet and is often referred to as 'Satchmo'?", answers: ["Duke Ellington", "Miles Davis", "Louis Armstrong", "John Coltrane"], correct: 2, image: "images/louis.jpg"},
+
+    {question: "What was the title of the first full-length album released by The Beatles?", answers: ["Please Please Me", "Help!", "Rubber Soul", "A Hard Day's Night"], correct: 0, image: "images/beatles.gif"},
+
+    {question: "Which band released the album 'The Dark Side of the Moon'?", answers: ["Pink Floyd", "The Rolling Stones", "Led Zeppelin", "The Who"], correct: 0, image: "images/darkside.gif"},
+
+    {question: "Who composed the ballet 'The Rite of Spring'?", answers: ["Igor Stravinsky", "Pyotr Ilyich Tchaikovsky", "Sergei Rachmaninoff", "Claude Debussy"], correct: 0, image: "images/rite.png"},
+
+    {question: "Which artist's real name is Stefani Joanne Angelina Germanotta?", answers: ["Katy Perry", "Madonna", "Lady Gaga", "Adele"], correct: 2, image: "images/gaga.jpg"},
+
+    {question: "Who is the best-selling female artist of all time?", answers: ["Whitney Houston", "Madonna", "Mariah Carey", "Celine Dion"], correct: 1, image: "images/female.jpg"}
+
+];
+
 /*---------- Variables (state) ---------*/
 
 let currentCategory = []; 
 let currentQuestionIndex = 0;
 let score = 0;
+let selectedCategory = '';
 
 
 /*----- Cached Element References  -----*/
@@ -68,12 +117,17 @@ function playSound(soundId) {
 function startQuiz(category) {
 
     playSound('game-start-sound');
+    selectedCategory = category
 
     // randomly shuffle questions based on category
     if (category === 'movie') {
         currentCategory = shuffleArray([...movieQuestions]); 
     } else if (category === 'game') {
         currentCategory = shuffleArray([...videoGameQuestions]);
+    } else if (category === 'anime') {
+        currentCategory = shuffleArray([...animeQuestions]);
+    } else if (category === 'music') {
+        currentCategory = shuffleArray([...musicQuestions]);
     }
 
     // reset score and question index
@@ -149,6 +203,9 @@ function showResult() {
         playSound('defeat-sound');
     }
 
+    saveScore(score, selectedCategory);
+    updateScoreboard();
+
 }
 
 // restart the game
@@ -168,6 +225,32 @@ function shuffleArray(array) {
         return array;
 
 }
+
+function saveScore(score, category) {
+    let scores = getScores();
+    let date = new Date().toLocaleString();
+    scores.push(`${date} - ${score} - ${category}`);
+    localStorage.setItem('scores', scores.join('|'));
+}
+
+function getScores() {
+    let scores = localStorage.getItem('scores');
+    return scores ? scores.split('|') : [];
+}
+
+function updateScoreboard() {
+    let scores = getScores();
+    let scoreboard = document.getElementById('scoreboard');
+    scoreboard.innerHTML = '';
+    scores.forEach((entry) => {
+        let li = document.createElement('li');
+        li.innerText = entry;
+        scoreboard.appendChild(li);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', updateScoreboard);
+
 
 /*----------- Event Listeners ----------*/
 
