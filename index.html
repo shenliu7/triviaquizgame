@@ -14,10 +14,13 @@
     <!-- Welcome Screen -->
     <div id="welcome-screen" class="screen">
         <h1>POP CULTURE TRIVIA TIME!</h1>
-        <button onclick="startQuiz('movie')">Movies</button>
-        <button onclick="startQuiz('game')">Video Games</button>
-        <button onclick="startQuiz('anime')">Anime</button>
-        <button onclick="startQuiz('music')">Music</button>
+        <input type="text" id="player-name" placeholder="Enter your name">
+        <div class="button-container">
+            <button onclick="startQuiz('movie')">Movies</button>
+            <button onclick="startQuiz('game')">Video Games</button>
+            <button onclick="startQuiz('anime')">Anime</button>
+            <button onclick="startQuiz('music')">Music</button>
+        </div>
         <h2>Scoreboard</h2>
         <ul id="scoreboard"></ul>
 

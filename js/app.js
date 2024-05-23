@@ -102,6 +102,7 @@ let currentCategory = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let selectedCategory = '';
+let playerName = '';
 
 
 /*----- Cached Element References  -----*/
@@ -115,6 +116,14 @@ function playSound(soundId) {
 }
 
 function startQuiz(category) {
+
+    
+
+    playerName = document.getElementById('player-name').value.trim(); // Get player's name
+    if (!playerName) {
+        alert("Please enter your name!");
+        return;
+    }
 
     playSound('game-start-sound');
     selectedCategory = category
@@ -203,7 +212,7 @@ function showResult() {
         playSound('defeat-sound');
     }
 
-    saveScore(score, selectedCategory);
+    saveScore(score, selectedCategory, playerName);
     updateScoreboard();
 
 }
@@ -226,10 +235,10 @@ function shuffleArray(array) {
 
 }
 
-function saveScore(score, category) {
+function saveScore(score, category, playerName) {
     let scores = getScores();
     let date = new Date().toLocaleString();
-    scores.push(`${date} - ${score} - ${category}`);
+    scores.push(`${playerName} - ${date} - ${score} - ${category}`);
     localStorage.setItem('scores', scores.join('|'));
 }
 

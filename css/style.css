@@ -15,6 +15,9 @@ body {
     background-size: cover; 
 }
 
+h1 {
+    font-size: 80px;
+}
 .screen {
     padding: 20px;
 }
@@ -24,7 +27,7 @@ button {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 24px;
     cursor: pointer;
     background-color: #007BFF;
     color: #fff;
@@ -32,6 +35,11 @@ button {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 
+}
+
+input {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 30px;
 }
 
 button:hover {
@@ -46,8 +54,22 @@ button:hover {
     
 }
 
+.button-container {
+    display: flexbox;
+    align-items: center;
+    margin: 30px;
+    padding: 30px;
+
+
+}
+
 #question-image {
     max-width: 100%;
     height: auto;
     margin: 20px 0;
 }
+
+ul {
+    font-size: 24px;
+    list-style-type: none;
+  }
