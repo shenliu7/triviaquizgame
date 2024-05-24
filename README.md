@@ -17,7 +17,7 @@ Technologies used:  JavaScript, HTML, CSS
 - A grand total of four categories to choose from!
 - A player name input box for your drippest player name!
 - A scoreboard to keep track of the result of your every attempt, including your player name, date and time of the attempt, score and category
-- Specially curated Sound FXs, including game start sound, button sound, victory and defeat sound (Volume warning! Make sure to turn your volum down a bit before playing)
+- Specially curated Sound FXs, including game start sound, button sound, victory and defeat sound (**Volume warning!** Make sure to turn your volum down a bit before playing)
 
 
 
